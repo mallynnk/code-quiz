@@ -9,8 +9,36 @@
       --hue-correct: 145;
   }
 
+  /* HEADER STYLE SECTION */
+header {
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+    background-color: #f9f0f0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    top: 0;
+    border-bottom: #76AF81 dotted 5px;
+}
+header h1 {
+    font-weight: lighter;
+    align-items: center;
+    font-size: 6vw;
+    margin: 40px; 
+    color: #76AF81;
+    justify-content: space-between;
+}
+
+header h2, h3 {
+    font-weight: lighter;
+    font-size: 2vw;
+    margin: 40px; 
+    color: #76AF81;
+    justify-content: space-between;
+}
+
   body {
-      --hue: var(--hue-neutral);
       padding: 0;
       margin: 0;
       display: flex;
@@ -18,11 +46,11 @@
       height: 100vh;
       justify-content: center;
       align-items: center;
-      background-color: hsl(var(--hue), 100%, 20%);
+      background-color: #f9f9f0;
   }
 
   body.correct { 
-    --hue: var(--hue-correct);
+     color: #76AF81;
   }
 
   body.wrong {
@@ -32,11 +60,11 @@
   .container {
       width: 800px;
       max-width: 80%;
-      background-color: #fff; 
+      background-color: #f9f0f0;
       border-radius: 5px;
       padding: 10px;
-      box-shadow: 0 0 10px  2px;
   }
+
 
   .btn-grid {
       display: grid;
@@ -46,21 +74,20 @@
   }
 
   .btn {
-      --hue: var(--hue-neutral);
-      border: 1px solid hsl(var(--hue), 100%, 30%);
-      background-color: hsl(var(--hue), 100%, 50%);
+      color: #76AF81;
+      color: #76AF81;
       border-radius: 5px;
-      padding: 5px 10px;
-      color: white;
+      padding: 50px;
+      color: #76AF81;
       outline: none;
   }
 
   .btn:hover {
-      border-color: black;
+      border-color: #9B8346;
   }
 
   .btn.correct {
-    --hue: var(--hue-correct)
+    color: #76AF81;
   }
 
 
@@ -82,4 +109,16 @@
 
 .hide {
     display: none;
+    float: right;
+}
+
+.question {
+    font-weight: lighter;
+    float: left;
+    align-items: center;
+    justify-content: center;
+    font-size: 4vw;
+    margin: 40px; 
+    color: #76AF81;
+
 }
