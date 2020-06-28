@@ -1,66 +1,80 @@
 const timeLeftDisplay = document.querySelector("#time-left")
-// const scoreDisplay = document.querySelector("#score")
 const startBtn = document.querySelector("#start-btn")
 const initialBtn = document.querySelector("#initials-btn")
 const initialInput = document.querySelector("#initial-input")
 const scoreDisplay = document.getElementById("high-scores")
 const startButton = document.getElementById("start-btn")
-const nextButton= document.getElementById("next-btn")
 const questionContainerEl = document.getElementById("question-container")
 const questionEl = document.getElementById("question")
 const answerButtonsEl = document.getElementById("answer-buttons")
 const initialEl = document.getElementById("initials")
 const highScores = []
-
-let timeLeft = 30;
+const answerStatusEl = document.getElementById("answer-status")
+let timeLeft = 10;
 let score = 0;
 let shuffledQuestions, currentQuestionIndex 
 
+//reset the quiz
+function resetState() {
+    timeLeftDisplay.innerHTML = 10
+    timeLeft = 10
+    countDown()
+    score = 0
+    initialInput.value = ""
+    initialBtn.setAttribute("disabled", true)
+}
 
 // function to begin quiz
 function startQuiz() {
+    resetState()
     startButton.classList.add("hide")
     scoreDisplay.classList.add("hide")
-    
     questionContainerEl.classList.remove("hide")
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerEl.classList.remove("hide") 
     setNextQuestion();
-    // keepScore()
 }
 
+// timer variables
+var myTimer = null
+var timer = function(){
+    if(timeLeft <= 0) {
+        stopTimer();
+        enterInitials();
+    } 
+    timeLeftDisplay.innerHTML = timeLeft
+        timeLeft -= 1
+    }
 
  //timer function   
  function countDown() {
-    setInterval(function(){
-        if(timeLeft <= 0) {
-            clearInterval(timeLeft = 0);
-            enterInitials();
-           // window.alert("Your time is up!")
-        } 
-        timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1
-    }, 1000)
+     myTimer = setInterval(timer, 1000)
+}
+
+function stopTimer() {
+   if (myTimer) {clearInterval(myTimer)}
+   timeLeftDisplay.innerHTML = timeLeft < 0 ? 0 : timeLeft
 }
 
 
-//  //score function   
-//  function keepScore() {
-//     setInterval(function(){
-//         if(answer.correct) {
-//             score = score +1
-//         } else {
-//             timeLeft = timeLeft -2
-//         }
-//         console.log(score);
-//         scoreDisplay.innerHTML = score
-//     })
-// }
+//score function   
+ function keepScore(isCorrect){
+        if(isCorrect) {
+            score++
+        } else {
+            timeLeft -= 2
+        }
+    }
+
 
 // function to begin next Question
 function setNextQuestion() {
-        resetState()
+    //change the visible answers
+    while (answerButtonsEl.firstChild) {
+        answerButtonsEl.removeChild
+        (answerButtonsEl.firstChild)
+    }
         showQuestion(shuffledQuestions[currentQuestionIndex])
     }
 
@@ -78,47 +92,25 @@ function showQuestion(question) {
         answerButtonsEl.appendChild(button) 
     })
 } 
-//change the visible answers
-function resetState() {
-    nextButton.classList.add("hide")
-    while (answerButtonsEl.firstChild) {
-        answerButtonsEl.removeChild
-        (answerButtonsEl.firstChild)
-    }
-}
+
 
 //shuffle through questions array
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerButtonsEl.children).forEach(button => { 
-        setStatusClass(button, button.dataset.correct)
-    })
-    if (shuffledQuestions.length > currentQuestionIndex + 1) {
-        currentQuestionIndex++
-        setNextQuestion()
-    } else {
-        enterInitials()
+    keepScore(correct)
+    answerStatusEl.innerHTML = correct ? "Correct, one point has been added!" : "Wrong, two seconds have been deducted"
+    setTimeout(() => {
+        if (shuffledQuestions.length > currentQuestionIndex + 1) {
+            currentQuestionIndex++
+            answerStatusEl.innerHTML = ""
+            setNextQuestion()
+        } else { 
+            stopTimer()
+            enterInitials()
+        }
+    }, 1000)
     
-    }
-    
-}
-
-//correct and wrong functions
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add("correct")
-    } else {
-        element.classList.add("wrong")
-    }
-    console.log(element);
-}
-
-function clearStatusClass(element) {
-    element.classList.remove("correct")
-    element.classList.remove("wrong")
 }
 
 //intials function
@@ -134,7 +126,7 @@ function saveScore() {
 //     }
     // highScores.push(saveScore)
         var scoreDiv = document.createElement("div")
-        scoreDiv.innerHTML = "<h2>" + initialInput.value + "</h2><div>" + "score placeholder" + "</div"
+        scoreDiv.innerHTML = "<h2>" + initialInput.value + "</h2><div>" + score + "</div"
         document.getElementById("scoreContainer").append(scoreDiv)
     displayScores()
 }
@@ -189,10 +181,6 @@ var questions = [
 
 document.addEventListener("DOMContentLoaded", () => {
 startButton.addEventListener("click", startQuiz)
-nextButton.addEventListener("click", () => {
-    currentQuestionIndex++
-    setNextQuestion()})
-startBtn.addEventListener("click", countDown)
 initialBtn.addEventListener("click", saveScore)
 initialInput.addEventListener("input", handleSubmitButtonState)
 })
