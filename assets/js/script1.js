@@ -1,4 +1,5 @@
 const timeLeftDisplay = document.querySelector("#time-left")
+const scoreDisplay = document.querySelector("#score")
 const startBtn = document.querySelector("#start-btn")
 const startButton = document.getElementById("start-btn")
 const nextButton= document.getElementById("next-btn")
@@ -7,7 +8,6 @@ const questionEl = document.getElementById("question")
 const answerButtonsEl = document.getElementById("answer-buttons")
 let timeLeft = 30;
 let score = 0;
-
 let shuffledQuestions, currentQuestionIndex 
 
 
@@ -35,6 +35,30 @@ function startQuiz() {
         timeLeftDisplay.innerHTML = timeLeft
         timeLeft -= 1
     }, 1000)
+}
+
+
+ //score function   
+ function keepScore() {
+    setInterval(function(){
+        if(answer.correct) {
+            score = score +1
+        } else {
+            timeLeft = timeLeft -2
+        }
+        console.log(score);
+        scoreDisplay.innerHTML = score
+    })
+}
+
+
+function keepScore() {
+    if(question = true) {
+        score = score++
+        console.log(score)
+    } else {
+    timeLeft = timeLeft -2 
+    }
 }
 
 
@@ -102,43 +126,35 @@ function setNextQuestion() {
         element.classList.remove("wrong")
     }
 
-    function keepScore() {
-        if(question = true) {
-            score = score++
-            console.log(score)
-        } else {
-        timeLeft = timeLeft -2 
-        }
-    }
 
 //questions array
 
 var questions = [
     {
-        question: "What is 2 +2?",
+        question: "What is DOM?",
         answers: [
-            {text: '4', correct: true},
-            {text: '22', correct: false},
-            {text: '5', correct: false},
-            {text: '17', correct: false}
+            {text: 'Document Object Model', correct: true},
+            {text: 'Definitive Object Model', correct: false},
+            {text: 'Document Orientation Model', correct: false},
+            {text: 'none of the above', correct: false}
         ]
     },
     {
-        question: "What is 2 +2?",
+        question: "Select the Correct Statement",
         answers: [
-            {text: '4', correct: true},
-            {text: '22', correct: false},
-            {text: '5', correct: false},
-            {text: '17', correct: false}
+            {text: 'You can use JavaScript to create interactive web elements', correct: true},
+            {text: 'JavaScript is used only for web apps', correct: false},
+            {text: 'JavaScript is a server-side only language', correct: false},
+            {text: 'none of the above', correct: false}
         ]
     },
     {
-        question: "What is 2 +2?",
+        question: "What extension is used for the JavaScript file?",
         answers: [
-            {text: '4', correct: true},
-            {text: '22', correct: false},
-            {text: '5', correct: false},
-            {text: '17', correct: false}
+            {text: '.js', correct: true},
+            {text: '.java', correct: false},
+            {text: '.javaS', correct: false},
+            {text: '.javascript', correct: false}
         ]
     }
 ]
