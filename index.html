@@ -9,7 +9,7 @@
 <header>
     <h1>Code Quiz</h1>
     <h2 id="countdown">Seconds Left: <span id="time-left">30</span></h2>
-    <h3>High Scores</h3>
+    <h3 id="score"> High Scores</h3>
 </header>
 <body>
     <div class="container">
@@ -21,6 +21,15 @@
                 <button class="btn">Answer 3</button>
                 <button class="btn">Answer 4</button>
             </div>
+        </div>
+        <div class="hide" id="initials">
+            <h1>please enter initials:</h1>
+            <input id="initial-input" type="text" placeholder="enter initials here"/> 
+            <button disabled class="btn" id="initials-btn">Save Score</button>
+        </div>
+        <div class="hide" id="high-scores">
+            <h1>High Scores:</h1>
+            <div id="scoreContainer"></div>
         </div>
         <div class="controls">
                 <button id="start-btn" class="start-btn btn">Start</button>
