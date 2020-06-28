@@ -1,15 +1,16 @@
-const timeLeftDisplay = document.querySelector("#time-left")
-const startBtn = document.querySelector("#start-btn")
-const initialBtn = document.querySelector("#initials-btn")
-const initialInput = document.querySelector("#initial-input")
-const scoreDisplay = document.getElementById("high-scores")
 const startButton = document.getElementById("start-btn")
 const questionContainerEl = document.getElementById("question-container")
 const questionEl = document.getElementById("question")
 const answerButtonsEl = document.getElementById("answer-buttons")
+const timeLeftDisplay = document.querySelector("#time-left")
+const startBtn = document.querySelector("#start-btn")
+const initialBtn = document.querySelector("#initials-btn")
+const initialInput = document.querySelector("#initial-input")
 const initialEl = document.getElementById("initials")
+const scoreDisplay = document.getElementById("high-scores")
 const highScores = []
 const answerStatusEl = document.getElementById("answer-status")
+var selectAnswerTimeout = null
 let timeLeft = 10;
 let score = 0;
 let shuffledQuestions, currentQuestionIndex 
@@ -18,7 +19,7 @@ let shuffledQuestions, currentQuestionIndex
 function resetState() {
     timeLeftDisplay.innerHTML = 10
     timeLeft = 10
-    countDown()
+    startTimer()
     score = 0
     initialInput.value = ""
     initialBtn.setAttribute("disabled", true)
@@ -43,12 +44,12 @@ var timer = function(){
         stopTimer();
         enterInitials();
     } 
-    timeLeftDisplay.innerHTML = timeLeft
-        timeLeft -= 1
+    const time = --timeLeft
+    timeLeftDisplay.innerHTML = time < 0 ? 0 : timeLeft
     }
 
  //timer function   
- function countDown() {
+ function startTimer() {
      myTimer = setInterval(timer, 1000)
 }
 
@@ -67,7 +68,6 @@ function stopTimer() {
         }
     }
 
-
 // function to begin next Question
 function setNextQuestion() {
     //change the visible answers
@@ -78,7 +78,7 @@ function setNextQuestion() {
         showQuestion(shuffledQuestions[currentQuestionIndex])
     }
 
-    //function to make question appear
+//function to make question appear
 function showQuestion(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
@@ -91,8 +91,7 @@ function showQuestion(question) {
         button.addEventListener("click", selectAnswer)
         answerButtonsEl.appendChild(button) 
     })
-} 
-
+}
 
 //shuffle through questions array
 function selectAnswer(e) {
@@ -100,7 +99,7 @@ function selectAnswer(e) {
     const correct = selectedButton.dataset.correct
     keepScore(correct)
     answerStatusEl.innerHTML = correct ? "Correct, one point has been added!" : "Wrong, two seconds have been deducted"
-    setTimeout(() => {
+    selectAnswerTimeout = setTimeout(() => {
         if (shuffledQuestions.length > currentQuestionIndex + 1) {
             currentQuestionIndex++
             answerStatusEl.innerHTML = ""
@@ -108,6 +107,7 @@ function selectAnswer(e) {
         } else { 
             stopTimer()
             enterInitials()
+            answerStatusEl.innerHTML = ""
         }
     }, 1000)
     
@@ -147,6 +147,14 @@ function displayScores() {
     startButton.innerText = "restart"
     startButton.classList.remove("hide") 
 }
+
+function viewHighScores(){
+    stopTimer()
+    clearTimeout(selectAnswerTimeout)
+    questionContainerEl.classList.add("hide")
+    displayScores()
+}
+
 
 //questions array
 var questions = [

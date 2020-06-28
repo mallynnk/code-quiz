@@ -21,7 +21,7 @@ header {
     top: 0;
     border-bottom: double #AF826D 10px;
 }
-header h1 {
+header h1, .initial-entry, .score-title {
     font-weight: lighter;
     align-items: center;
     font-size: 6vw;
@@ -49,14 +49,7 @@ header h2, h3 {
       background-color: #fff5ee;
   }
 
-  body.correct { 
-     color: #fff5ee;
-  }
-
-  body.wrong {
-      --hue: var(--hue-wrong)
-  }
-
+ 
   .container {
       width: 800px;
       max-width: 80%;
@@ -86,16 +79,8 @@ header h2, h3 {
       border-color: #9B8346;
   }
 
-  .btn.correct {
-    color: #AF826D;
-  }
 
-
-.btn.wrong {
-    --hue: var(--hue-wrong;)
-}
-
-.start-btn, .next-btn {
+.start-btn {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
@@ -119,5 +104,28 @@ header h2, h3 {
     font-size: 4vw;
     margin: 40px; 
     color: #fff5ee;
+}
 
+
+.initial-text-box, .initials-btn {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 15px auto;
+}
+
+.scores {
+    font-weight: lighter;
+    font-size: 2vw;
+    margin: 40px; 
+    color: #fff5ee;
+    justify-content: space-between;
+
+}
+
+.answer-status {
+    color: #fff5ee;
+    font-weight: lighter;
+    font-style: italic;
+    text-align: center
 }
