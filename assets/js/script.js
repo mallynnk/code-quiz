@@ -11,31 +11,9 @@ const scoreDisplay = document.getElementById("high-scores")
 const highScores = []
 const answerStatusEl = document.getElementById("answer-status")
 var selectAnswerTimeout = null
-let timeLeft = 10;
+let timeLeft = 20;
 let score = 0;
 let shuffledQuestions, currentQuestionIndex 
-
-//reset the quiz
-function resetState() {
-    timeLeftDisplay.innerHTML = 10
-    timeLeft = 10
-    startTimer()
-    score = 0
-    initialInput.value = ""
-    initialBtn.setAttribute("disabled", true)
-}
-
-// function to begin quiz
-function startQuiz() {
-    resetState()
-    startButton.classList.add("hide")
-    scoreDisplay.classList.add("hide")
-    questionContainerEl.classList.remove("hide")
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
-    questionContainerEl.classList.remove("hide") 
-    setNextQuestion();
-}
 
 // timer variables
 var myTimer = null
@@ -58,15 +36,27 @@ function stopTimer() {
    timeLeftDisplay.innerHTML = timeLeft < 0 ? 0 : timeLeft
 }
 
+//reset the quiz
+function resetState() {
+    timeLeftDisplay.innerHTML = 20
+    timeLeft = 20
+    startTimer()
+    score = 0
+    initialInput.value = ""
+    initialBtn.setAttribute("disabled", true)
+}
 
-//score function   
- function keepScore(isCorrect){
-        if(isCorrect) {
-            score++
-        } else {
-            timeLeft -= 2
-        }
-    }
+// function to begin quiz
+function startQuiz() {
+    resetState()
+    startButton.classList.add("hide")
+    scoreDisplay.classList.add("hide")
+    questionContainerEl.classList.remove("hide")
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionContainerEl.classList.remove("hide") 
+    setNextQuestion();
+}
 
 // function to begin next Question
 function setNextQuestion() {
@@ -113,11 +103,14 @@ function selectAnswer(e) {
     
 }
 
-//intials function
-function enterInitials() {
-    initialEl.classList.remove("hide")
-    questionContainerEl.classList.add("hide")
-}
+//score function   
+ function keepScore(isCorrect){
+        if(isCorrect) {
+            score++
+        } else {
+            timeLeft -= 2
+        }
+    }
 
 //save score
 function saveScore() {
@@ -126,6 +119,13 @@ function saveScore() {
     document.getElementById("scoreContainer").append(scoreDiv)
     displayScores()
 }
+
+//intials function
+function enterInitials() {
+    initialEl.classList.remove("hide")
+    questionContainerEl.classList.add("hide")
+}
+
 
 //ensure initials are entered before saving
 function handleSubmitButtonState() {
@@ -144,13 +144,12 @@ function displayScores() {
     startButton.classList.remove("hide") 
 }
 
-function viewHighScores(){
+function viewScores(){
     stopTimer()
     clearTimeout(selectAnswerTimeout)
     questionContainerEl.classList.add("hide")
     displayScores()
 }
-
 
 //questions array
 var questions = [
@@ -179,6 +178,24 @@ var questions = [
             {text: '.java', correct: false},
             {text: '.javaS', correct: false},
             {text: '.javascript', correct: false}
+        ]
+    },
+    {
+        question: "Inside which HTML element do we put the JavaScript?",
+        answers: [
+            {text: '<script>', correct: true},
+            {text: '<javascript>', correct: false},
+            {text: '<js>', correct: false},
+            {text: '<main>', correct: false}
+        ]
+    },
+    {
+        question: "How do you call a function named 'helloWorld'?",
+        answers: [
+            {text: 'helloWorld()', correct: true},
+            {text: 'call function hellowWorld()', correct: false},
+            {text: 'call helloWorld()', correct: false},
+            {text: 'none of the above', correct: false}
         ]
     }
 ]

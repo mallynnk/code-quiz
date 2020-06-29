@@ -3,93 +3,76 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  :root {
-      --hue-neutral: 200;
-      --hue-wrong: 0;
-      --hue-correct: 145;
-  }
+/* COLORS */
+ :root {
+    --primary: #ECC3A8;
+    --secondary: #906E55;
+    --tertiary: #D77A76;
+}
 
   /* HEADER STYLE SECTION */
 header {
     padding: 10px;
     position: absolute;
     width: 100%;
-    background-color: #11735B;
+    background-color: var(--secondary);
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     top: 0;
-    border-bottom: double #AF826D 10px;
+    border-bottom: double var(--tertiary) 10px;
 }
-header h1, .initial-entry, .score-title {
+
+header h1 {
     font-weight: lighter;
     align-items: center;
-    font-size: 6vw;
+    font-size: 4.2vw;
     margin: 40px; 
-    color: #fff5ee;
+    color: var(--primary);
     justify-content: space-between;
 }
 
 header h2, h3 {
     font-weight: lighter;
-    font-size: 2vw;
+    font-size: 1.75vw;
     margin: 40px; 
-    color: #fff5ee;
+    color: var(--primary);
     justify-content: space-between;
 }
 
-  body {
-      padding: 0;
-      margin: 0;
-      display: flex;
-      width: 100vw;
-      height: 100vh;
-      justify-content: center;
-      align-items: center;
-      background-color: #fff5ee;
+  /* QUIZ BODY STYLE SECTION */
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
   }
-
- 
-  .container {
-      width: 800px;
-      max-width: 80%;
-      background-color: #11735B; 
-      border-radius: 5px;
-      padding: 10px;
-  }
-
-
-  .btn-grid {
-      display: grid;
-      grid-template-columns: repeat(2, auto);
-      gap: 10px;
-      margin: 20px 0;
-  }
-
-  .btn {
-      color: #fff5ee;
-      color: #fff5ee;
-      border-radius: 5px;
-      padding: 15px;
-      color: #AF826D;
-      outline: none;
-  }
-
-  .btn:hover {
-      border-color: #9B8346;
-  }
-
-
-.start-btn {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 10px 20px;
-}
 
 .controls {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px;
+}
+ 
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: var(--secondary);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 200px 0px 10px 10px;
+}
+
+.answer-status {
+    color: var(--primary);
+    font-weight: lighter;
+    font-style: italic;
+    text-align: center
 }
 
 .hide {
@@ -101,12 +84,44 @@ header h2, h3 {
     font-weight: lighter;
     align-items: center;
     justify-content: center;
-    font-size: 4vw;
+    font-size: 3vw;
     margin: 40px; 
-    color: #fff5ee;
+    color: var(--primary);
 }
 
+/* BUTTON STYLES */
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+  }
 
+.btn {
+    color: var(--primary);
+    color: var(--primary);
+    border-radius: 5px;
+    padding: 15px;
+    color: var(--tertiary);
+    outline: none;
+  }
+
+.btn:hover {
+    border-color: var(--tertiary);
+    border: solid 5px;
+  }
+
+.score:hover {
+  color: var(--tertiary);
+}
+
+.start-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+/* SCORE STYLES */
 .initial-text-box, .initials-btn {
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -114,18 +129,20 @@ header h2, h3 {
     margin: 15px auto;
 }
 
-.scores {
+.initial-entry, .score-title {
+    font-weight: lighter;
+    font-size: 3vw;
+    margin: 40px; 
+    color: var(--primary);
+    justify-content: space-between;
+}
+
+.scores, {
     font-weight: lighter;
     font-size: 2vw;
     margin: 40px; 
-    color: #fff5ee;
+    color: var(--primary);
     justify-content: space-between;
 
 }
 
-.answer-status {
-    color: #fff5ee;
-    font-weight: lighter;
-    font-style: italic;
-    text-align: center
-}

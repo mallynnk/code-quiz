@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./assets/css/style.css" rel="stylesheet" />
-    <title>Code Quiz</title>
+    <title>JavaScript Quiz</title>
 </head>
 <header>
-    <h1>Code Quiz</h1>
-    <h2 id="countdown">Seconds Left: <span id="time-left">10</span></h2>
-    <h3 id="score" onclick="viewHighScores()">View Scores</h3>
+    <h1>JavaScript Quiz</h1>
+    <h2 id="countdown">Seconds Left: <span id="time-left">20</span></h2>
+    <h3 id="score" class="score" onclick="viewScores()">View Scores</h3>
 </header>
 <body>
     <div class="container">
@@ -25,7 +25,6 @@
         </div>
         <div class="hide" id="initials">
             <h1 class="initial-entry">please enter initials:</h1>
-            
             <input id="initial-input" class="initial-text-box" type="text" placeholder="enter initials here"/> 
             <button disabled class="initials-btn btn" id="initials-btn">Save Score</button>
             
@@ -38,6 +37,6 @@
                 <button id="start-btn" class="start-btn btn">Start</button>
         </div>
     </div> 
-    <script src="./assets/js/script1.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
