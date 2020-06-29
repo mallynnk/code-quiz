@@ -6,7 +6,7 @@ A timed quiz that tests JavaScript knowledge and saves the user's scores. The us
 ## Built With
 * HTML
 * CSS
-*JavaScript
+* JavaScript
 
 ## Website
 https://mallynnk.github.io/code-quiz/
