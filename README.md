@@ -1,7 +1,7 @@
 # JavaScript Quiz
 
 ## Purpose
-A timed quiz that tests JavaScript knowledge and saves the user's scores. The player earns one point for every correct answer and loses 2 seconds off the timer for every incorrect answer. At the end of the game, the player must enter their initials in order to save their score. The user can take the quiz as many times as they would like. 
+A timed quiz that tests JavaScript knowledge and saves the user's scores. The user earns one point for every correct answer and loses two seconds off the timer for every incorrect answer. At the end of the game, the player must enter their initials in order to save their score. The user can take the quiz as many times as they would like. 
 
 ## Built With
 * HTML
